@@ -6,9 +6,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Amanda Souza | Digital Experience</title>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Inter:wght@300;400;600;800&display=swap');
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
+<style>
 :root {
   --green: #00ff9d;
   --blue: #00aaff;
@@ -41,15 +42,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 60px 8%;
+  padding: 70px 8%;
   isolation: isolate;
   overflow: hidden;
-  background:
-    radial-gradient(ellipse at 15% 50%, rgba(0,255,157,.12), transparent 42%),
-    radial-gradient(ellipse at 85% 50%, rgba(0,170,255,.15), transparent 42%),
-    #030609;
+  background: #030609;
 }
 
+/* VÍDEO DE FUNDO */
 .video-bg {
   position: absolute;
   inset: 0;
@@ -57,23 +56,44 @@ body {
   height: 100%;
   object-fit: cover;
   z-index: -3;
-  opacity: .48;
+  opacity: .32;
 }
 
-.shade {
+/* FOTO GRANDE NO FUNDO DA TELA */
+.hero::before {
+  content: "";
   position: absolute;
   inset: 0;
   z-index: -2;
+  background-image: url("WhatsApp%20Image%202026-10-16%20at%2013.24.10.jpeg");
+  background-size: cover;
+  background-position: center 30%;
+  background-repeat: no-repeat;
+  opacity: .62;
+  transform: scale(1.02);
+}
+
+/* ESCURECE O FUNDO PARA O TEXTO FICAR LEGÍVEL */
+.shade {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
   background:
-    linear-gradient(90deg, rgba(2,7,10,.94), rgba(2,7,10,.52) 55%, rgba(2,7,10,.82)),
-    linear-gradient(0deg, rgba(2,7,10,.75), transparent 50%);
+    linear-gradient(90deg,
+      rgba(2,7,10,.91),
+      rgba(2,7,10,.52) 52%,
+      rgba(2,7,10,.30)),
+    linear-gradient(0deg,
+      rgba(2,7,10,.72),
+      rgba(2,7,10,.12) 55%,
+      rgba(2,7,10,.50));
 }
 
 .grid {
   position: absolute;
   inset: 0;
-  z-index: -1;
-  opacity: .12;
+  z-index: 0;
+  opacity: .13;
   pointer-events: none;
   background-image:
     linear-gradient(rgba(0,255,157,.18) 1px, transparent 1px),
@@ -89,7 +109,7 @@ body {
   border-radius: 50%;
   filter: blur(120px);
   opacity: .2;
-  z-index: -1;
+  z-index: 0;
   pointer-events: none;
 }
 
@@ -106,12 +126,18 @@ body {
 }
 
 .layout {
+  position: relative;
+  z-index: 1;
   width: 100%;
   max-width: 1250px;
   display: grid;
   grid-template-columns: 1.2fr .8fr;
   align-items: center;
-  gap: 65px;
+  gap: 55px;
+}
+
+.text-content {
+  text-shadow: 0 2px 12px rgba(0,0,0,.45);
 }
 
 .status {
@@ -122,11 +148,12 @@ body {
   font-family: 'Orbitron', sans-serif;
   font-size: 10px;
   letter-spacing: 3px;
-  border: 1px solid rgba(0,255,157,.35);
-  background: rgba(0,255,157,.05);
+  border: 1px solid rgba(0,255,157,.45);
+  background: rgba(0,10,12,.72);
   padding: 12px 17px;
-  margin-bottom: 35px;
+  margin-bottom: 30px;
   text-transform: uppercase;
+  backdrop-filter: blur(10px);
 }
 
 .status-dot {
@@ -150,7 +177,7 @@ h1 span {
   display: block;
   color: transparent;
   -webkit-text-stroke: 1px var(--green);
-  text-shadow: 0 0 35px rgba(0,255,157,.15);
+  text-shadow: 0 0 35px rgba(0,255,157,.22);
 }
 
 .role {
@@ -165,7 +192,7 @@ h1 span {
 
 .description {
   max-width: 540px;
-  color: #b5c5d0;
+  color: #e0edf3;
   font-size: 15px;
   line-height: 1.9;
   margin-top: 22px;
@@ -173,7 +200,7 @@ h1 span {
 }
 
 .skills-title {
-  margin-top: 32px;
+  margin-top: 30px;
   margin-bottom: 14px;
   color: #eaf8ff;
   font-family: 'Orbitron', sans-serif;
@@ -193,20 +220,20 @@ h1 span {
   letter-spacing: .5px;
   color: #d8f8ed;
   padding: 10px 13px;
-  border: 1px solid rgba(0,255,157,.23);
-  background: rgba(0,255,157,.035);
+  border: 1px solid rgba(0,255,157,.35);
+  background: rgba(0,12,12,.78);
+  backdrop-filter: blur(8px);
   transition: .25s;
 }
 
 .skill:nth-child(even) {
-  border-color: rgba(0,170,255,.35);
+  border-color: rgba(0,170,255,.5);
   color: #c4eaff;
-  background: rgba(0,170,255,.035);
 }
 
 .skill:hover {
   border-color: var(--green);
-  box-shadow: 0 0 18px rgba(0,255,157,.18);
+  box-shadow: 0 0 18px rgba(0,255,157,.25);
   transform: translateY(-3px);
 }
 
@@ -243,31 +270,34 @@ h1 span {
 
 .btn-secondary {
   color: var(--blue);
-  border: 1px solid rgba(0,170,255,.6);
-  background: rgba(0,170,255,.04);
+  border: 1px solid rgba(0,170,255,.7);
+  background: rgba(0,10,18,.82);
+  backdrop-filter: blur(8px);
 }
 
 .btn-secondary:hover {
-  background: rgba(0,170,255,.13);
+  background: rgba(0,170,255,.18);
   box-shadow: 0 0 25px rgba(0,170,255,.18);
   transform: translateY(-3px);
 }
 
+/* FOTO PRINCIPAL COM EFEITO NEON */
 .visual {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 470px;
+  min-height: 500px;
 }
 
 .orbit {
   position: absolute;
   width: min(390px, 100%);
   aspect-ratio: 1;
-  border: 1px solid rgba(0,170,255,.38);
+  border: 1px solid rgba(0,170,255,.6);
   border-radius: 50%;
-  box-shadow: 0 0 45px rgba(0,170,255,.08), inset 0 0 45px rgba(0,255,157,.04);
+  box-shadow: 0 0 45px rgba(0,170,255,.12),
+              inset 0 0 45px rgba(0,255,157,.07);
   animation: rotate 22s linear infinite;
 }
 
@@ -285,7 +315,7 @@ h1 span {
 
 .orbit.inner {
   width: min(320px, 82%);
-  border-color: rgba(0,255,157,.3);
+  border-color: rgba(0,255,157,.5);
   animation-direction: reverse;
   animation-duration: 17s;
 }
@@ -293,12 +323,12 @@ h1 span {
 .photo-frame {
   position: relative;
   z-index: 2;
-  width: min(285px, 75%);
+  width: min(320px, 78%);
   aspect-ratio: 4 / 5;
   padding: 3px;
   background: linear-gradient(145deg, var(--green), #063e56, var(--blue));
   clip-path: polygon(0 0, 83% 0, 100% 15%, 100% 100%, 17% 100%, 0 85%);
-  filter: drop-shadow(0 0 28px rgba(0,255,157,.18));
+  filter: drop-shadow(0 0 28px rgba(0,255,157,.35));
 }
 
 .photo-frame img {
@@ -319,8 +349,8 @@ h1 span {
   font-size: 10px;
   letter-spacing: 2px;
   padding: 12px 14px;
-  border: 1px solid rgba(0,255,157,.35);
-  background: rgba(3,9,14,.88);
+  border: 1px solid rgba(0,255,157,.45);
+  background: rgba(3,9,14,.90);
   backdrop-filter: blur(12px);
 }
 
@@ -333,18 +363,19 @@ h1 span {
   bottom: 13%;
   left: -1%;
   color: var(--blue);
-  border-color: rgba(0,170,255,.4);
+  border-color: rgba(0,170,255,.5);
 }
 
 .footer {
   position: absolute;
+  z-index: 2;
   bottom: 22px;
   left: 8%;
   right: 8%;
   display: flex;
   justify-content: space-between;
   gap: 20px;
-  color: #6f8996;
+  color: #c0d0d8;
   font-size: 9px;
   font-family: 'Orbitron', sans-serif;
   letter-spacing: 2px;
@@ -366,7 +397,7 @@ h1 span {
 
 @media (max-width: 900px) {
   .hero {
-    padding: 65px 7% 80px;
+    padding: 55px 7% 85px;
   }
 
   .layout {
@@ -376,7 +407,7 @@ h1 span {
 
   .visual {
     grid-row: 1;
-    min-height: 320px;
+    min-height: 350px;
   }
 
   .orbit {
@@ -388,7 +419,7 @@ h1 span {
   }
 
   .photo-frame {
-    width: 180px;
+    width: 205px;
   }
 
   .corner.top {
@@ -414,27 +445,18 @@ h1 span {
     margin-right: auto;
   }
 
-  .status {
-    margin-bottom: 22px;
-  }
-
   h1 {
     letter-spacing: -1px;
-  }
-
-  .footer {
-    left: 7%;
-    right: 7%;
   }
 }
 
 @media (max-width: 480px) {
   .hero {
-    padding: 45px 20px 75px;
+    padding: 35px 20px 80px;
   }
 
   .visual {
-    min-height: 260px;
+    min-height: 275px;
   }
 
   .orbit {
@@ -446,7 +468,7 @@ h1 span {
   }
 
   .photo-frame {
-    width: 150px;
+    width: 165px;
   }
 
   .role {
@@ -548,7 +570,7 @@ h1 span {
 
       <div class="photo-frame">
         <img
-          src="Imagem%20do%20WhatsApp%202026-10-16%20%C3%A0s%2013%3A24%3A10.jpeg"
+          src="WhatsApp%20Image%202026-10-16%20at%2013.24.10.jpeg"
           alt="Foto de Amanda Souza">
       </div>
 
