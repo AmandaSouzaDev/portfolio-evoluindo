@@ -2,445 +2,271 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Amanda Souza | Digital Experience</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>Amanda Souza | Portfólio</title>
 
-<style>
-:root {
-  --green: #00ff9d;
-  --blue: #00aaff;
-  --black: #030609;
-}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-html, body {
-  width: 100%;
-  min-height: 100%;
-  background: var(--black);
-  color: white;
-  font-family: 'Inter', sans-serif;
-}
+        html {
+            scroll-behavior: smooth;
+        }
 
-body {
-  overflow-x: hidden;
-}
+        body {
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            background-color: #030609;
+            color: #ffffff;
+        }
 
-/* FOTO COMO FUNDO DA PÁGINA INTEIRA */
-.hero {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  min-height: 100dvh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 70px 8%;
-  isolation: isolate;
-  overflow: hidden;
-  background: #030609;
-}
+        /* FOTO OCUPANDO A TELA INTEIRA */
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 70px 8%;
+            overflow: hidden;
 
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  background-image: url("WhatsApp%20Image%202026-10-16%20at%2013.24.10.jpeg");
-  background-size: cover;
-  background-position: center 30%;
-  background-repeat: no-repeat;
-  transform: scale(1.02);
-}
+            background-image:
+                linear-gradient(
+                    90deg,
+                    rgba(3, 6, 9, 0.88) 0%,
+                    rgba(3, 6, 9, 0.65) 48%,
+                    rgba(3, 6, 9, 0.25) 100%
+                ),
+                url("WhatsApp%20Image%202026-10-16%20at%2013.24.10.jpeg");
 
-/* CAMADA ESCURA PARA DESTACAR O TEXTO */
-.shade {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background:
-    linear-gradient(
-      90deg,
-      rgba(2,7,10,.88),
-      rgba(2,7,10,.50) 55%,
-      rgba(2,7,10,.30)
-    ),
-    linear-gradient(
-      0deg,
-      rgba(2,7,10,.65),
-      rgba(2,7,10,.10) 55%,
-      rgba(2,7,10,.35)
-    );
-}
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
 
-/* GRADE DIGITAL */
-.grid {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  opacity: .13;
-  pointer-events: none;
-  background-image:
-    linear-gradient(rgba(0,255,157,.18) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,170,255,.18) 1px, transparent 1px);
-  background-size: 55px 55px;
-  mask-image: linear-gradient(to bottom, transparent, black 25%, black 75%, transparent);
-}
+        .content {
+            position: relative;
+            z-index: 1;
+            max-width: 760px;
+        }
 
-.glow {
-  position: absolute;
-  width: 360px;
-  height: 360px;
-  border-radius: 50%;
-  filter: blur(120px);
-  opacity: .18;
-  z-index: 0;
-  pointer-events: none;
-}
+        .tag {
+            display: inline-block;
+            color: #00ff9d;
+            border: 1px solid rgba(0, 255, 157, 0.65);
+            background: rgba(0, 255, 157, 0.08);
+            padding: 10px 16px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 28px;
+        }
 
-.glow.green {
-  background: var(--green);
-  left: -150px;
-  top: 20%;
-}
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(42px, 7vw, 82px);
+            line-height: 1.1;
+            font-weight: 800;
+            margin-bottom: 22px;
+            text-shadow: 0 0 25px rgba(0, 255, 157, 0.2);
+        }
 
-.glow.blue {
-  background: var(--blue);
-  right: -150px;
-  bottom: 10%;
-}
+        h1 span {
+            color: #00ff9d;
+            display: block;
+        }
 
-/* CONTEÚDO PRINCIPAL */
-.layout {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  max-width: 1250px;
-  display: grid;
-  grid-template-columns: 1fr;
-  align-items: center;
-  gap: 30px;
-}
+        .subtitle {
+            font-size: clamp(17px, 2vw, 23px);
+            line-height: 1.6;
+            color: #d8e2e8;
+            margin-bottom: 18px;
+        }
 
-.text-content {
-  max-width: 850px;
-  text-shadow: 0 2px 12px rgba(0,0,0,.5);
-}
+        .description {
+            font-size: 15px;
+            line-height: 1.9;
+            color: #c0cbd2;
+            max-width: 620px;
+            margin-bottom: 28px;
+        }
 
-.status {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--green);
-  font-family: 'Orbitron', sans-serif;
-  font-size: 10px;
-  letter-spacing: 3px;
-  border: 1px solid rgba(0,255,157,.45);
-  background: rgba(0,10,12,.72);
-  padding: 12px 17px;
-  margin-bottom: 30px;
-  text-transform: uppercase;
-  backdrop-filter: blur(10px);
-}
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 35px;
+        }
 
-.status-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--green);
-  box-shadow: 0 0 12px var(--green);
-  animation: pulse 1.5s infinite;
-}
+        .skill {
+            padding: 9px 14px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: rgba(10, 18, 25, 0.65);
+            color: #eafaf4;
+            font-size: 12px;
+            transition: 0.3s ease;
+        }
 
-h1 {
-  font-family: 'Orbitron', sans-serif;
-  font-size: clamp(42px, 7vw, 92px);
-  font-weight: 900;
-  line-height: 1.04;
-  letter-spacing: -3px;
-}
+        .skill:hover {
+            border-color: #00ff9d;
+            color: #00ff9d;
+            transform: translateY(-3px);
+        }
 
-h1 span {
-  display: block;
-  color: transparent;
-  -webkit-text-stroke: 1px var(--green);
-  text-shadow: 0 0 35px rgba(0,255,157,.22);
-}
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
 
-.role {
-  margin-top: 24px;
-  color: var(--blue);
-  font-family: 'Orbitron', sans-serif;
-  font-size: clamp(11px, 1.4vw, 15px);
-  letter-spacing: 3px;
-  line-height: 1.8;
-  text-transform: uppercase;
-}
+        .button {
+            display: inline-block;
+            padding: 15px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            transition: 0.3s ease;
+        }
 
-.description {
-  max-width: 600px;
-  color: #e0edf3;
-  font-size: 15px;
-  line-height: 1.9;
-  margin-top: 22px;
-  font-weight: 300;
-}
+        .button-primary {
+            background: #00ff9d;
+            color: #03110b;
+            box-shadow: 0 0 20px rgba(0, 255, 157, 0.2);
+        }
 
-.skills-title {
-  margin-top: 30px;
-  margin-bottom: 14px;
-  color: #eaf8ff;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 10px;
-  letter-spacing: 3px;
-}
+        .button-primary:hover {
+            background: #ffffff;
+            transform: translateY(-3px);
+        }
 
-.skills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 9px;
-  max-width: 650px;
-}
+        .button-secondary {
+            color: #ffffff;
+            border: 1px solid #00aaff;
+            background: rgba(0, 170, 255, 0.08);
+        }
 
-.skill {
-  font-size: 11px;
-  letter-spacing: .5px;
-  color: #d8f8ed;
-  padding: 10px 13px;
-  border: 1px solid rgba(0,255,157,.35);
-  background: rgba(0,12,12,.78);
-  backdrop-filter: blur(8px);
-  transition: .25s;
-}
+        .button-secondary:hover {
+            background: #00aaff;
+            color: #031019;
+            transform: translateY(-3px);
+        }
 
-.skill:nth-child(even) {
-  border-color: rgba(0,170,255,.5);
-  color: #c4eaff;
-}
+        footer {
+            position: absolute;
+            bottom: 20px;
+            left: 8%;
+            z-index: 1;
+            font-size: 11px;
+            color: #b7c4ca;
+            letter-spacing: 1px;
+        }
 
-.skill:hover {
-  border-color: var(--green);
-  box-shadow: 0 0 18px rgba(0,255,157,.25);
-  transform: translateY(-3px);
-}
+        @media (max-width: 600px) {
+            .hero {
+                padding: 60px 7%;
+                background-position: center;
+            }
 
-/* BOTÕES */
-.actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  margin-top: 32px;
-}
+            h1 {
+                font-size: 43px;
+            }
 
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 16px 21px;
-  text-decoration: none;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  transition: .3s;
-}
+            .description {
+                font-size: 14px;
+            }
 
-.btn-primary {
-  background: var(--green);
-  color: #00130b;
-  box-shadow: 0 0 25px rgba(0,255,157,.2);
-}
+            .buttons {
+                flex-direction: column;
+                align-items: flex-start;
+            }
 
-.btn-primary:hover {
-  box-shadow: 0 0 38px rgba(0,255,157,.48);
-  transform: translateY(-3px);
-}
+            .button {
+                text-align: center;
+                width: 100%;
+                max-width: 280px;
+            }
 
-.btn-secondary {
-  color: var(--blue);
-  border: 1px solid rgba(0,170,255,.7);
-  background: rgba(0,10,18,.82);
-  backdrop-filter: blur(8px);
-}
-
-.btn-secondary:hover {
-  background: rgba(0,170,255,.18);
-  box-shadow: 0 0 25px rgba(0,170,255,.18);
-  transform: translateY(-3px);
-}
-
-/* RODAPÉ */
-.footer {
-  position: absolute;
-  z-index: 2;
-  bottom: 22px;
-  left: 8%;
-  right: 8%;
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  color: #e0edf3;
-  font-size: 9px;
-  font-family: 'Orbitron', sans-serif;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-.footer span:first-child {
-  color: var(--green);
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: .35; }
-}
-
-/* TABLETS E CELULARES */
-@media (max-width: 900px) {
-  .hero {
-    padding: 55px 7% 90px;
-  }
-
-  .text-content {
-    text-align: center;
-    margin: auto;
-  }
-
-  .skills,
-  .actions {
-    justify-content: center;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .description {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  h1 {
-    letter-spacing: -1px;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero {
-    padding: 45px 20px 85px;
-  }
-
-  .status {
-    font-size: 9px;
-    letter-spacing: 2px;
-  }
-
-  .role {
-    letter-spacing: 1.5px;
-  }
-
-  .description {
-    font-size: 13px;
-  }
-
-  .btn {
-    width: 100%;
-  }
-
-  .footer {
-    font-size: 7px;
-    letter-spacing: .5px;
-    left: 20px;
-    right: 20px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation: none !important;
-    transition: none !important;
-  }
-}
-</style>
+            footer {
+                left: 7%;
+                right: 7%;
+                font-size: 9px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-<main class="hero">
 
-  <div class="shade"></div>
-  <div class="grid"></div>
-  <div class="glow green"></div>
-  <div class="glow blue"></div>
+    <main class="hero">
 
-  <div class="layout">
+        <section class="content">
 
-    <section class="text-content">
+            <div class="tag">
+                PORTFÓLIO DIGITAL
+            </div>
 
-      <div class="status">
-        <span class="status-dot"></span>
-        Criando o futuro digital
-      </div>
+            <h1>
+                AMANDA
+                <span>SOUZA</span>
+            </h1>
 
-      <h1>
-        AMANDA
-        <span>SOUZA.</span>
-      </h1>
+            <p class="subtitle">
+                Estudante de ADS | Desenvolvedora Web | Designer Digital
+            </p>
 
-      <div class="role">
-        Desenvolvedora Front-End<br>
-        Designer Digital &amp; UI/UX
-      </div>
+            <p class="description">
+                Unindo tecnologia, criatividade e design para desenvolver
+                experiências digitais modernas. Estudante de Análise e
+                Desenvolvimento de Sistemas, com interesse em desenvolvimento
+                web, UI/UX Design e criação de interfaces.
+            </p>
 
-      <p class="description">
-        Transformo criatividade em experiências digitais.
-        Estudante de Análise e Desenvolvimento de Sistemas,
-        unindo tecnologia, design e inovação para criar projetos
-        modernos e funcionais.
-      </p>
+            <div class="skills">
+                <span class="skill">HTML5</span>
+                <span class="skill">CSS3</span>
+                <span class="skill">JavaScript</span>
+                <span class="skill">Python</span>
+                <span class="skill">Figma</span>
+                <span class="skill">UI/UX Design</span>
+                <span class="skill">Design Gráfico</span>
+                <span class="skill">Adobe Illustrator</span>
+            </div>
 
-      <div class="skills-title">// MINHAS HABILIDADES</div>
+            <div class="buttons">
+                <a
+                    class="button button-primary"
+                    href="https://github.com/AmandaSouza-Front"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    MEU GITHUB
+                </a>
 
-      <div class="skills">
-        <span class="skill">HTML5</span>
-        <span class="skill">CSS3</span>
-        <span class="skill">JavaScript</span>
-        <span class="skill">Python</span>
-        <span class="skill">Figma</span>
-        <span class="skill">UI/UX Design</span>
-        <span class="skill">Design Gráfico</span>
-        <span class="skill">Adobe Illustrator</span>
-        <span class="skill">Desenvolvimento Web</span>
-      </div>
+                <a
+                    class="button button-secondary"
+                    href="https://wa.me/5521981308649"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    ENTRAR EM CONTATO
+                </a>
+            </div>
 
-      <div class="actions">
-        <a class="btn btn-primary"
-           href="https://wa.me/5521981308649"
-           target="_blank" rel="noopener noreferrer">
-          FALAR NO WHATSAPP ↗
-        </a>
+        </section>
 
-        <a class="btn btn-secondary"
-           href="https://github.com/AmandaSouza-Front"
-           target="_blank" rel="noopener noreferrer">
-          EXPLORAR GITHUB ↗
-        </a>
-      </div>
+        <footer>
+            © 2026 AMANDA SOUZA | TECNOLOGIA • DESIGN • CRIATIVIDADE
+        </footer>
 
-    </section>
+    </main>
 
-  </div>
-
-  <footer class="footer">
-    <span>Portfólio digital • 2026</span>
-    <span>Inovação sem limites</span>
-  </footer>
-
-</main>
 </body>
 </html>
