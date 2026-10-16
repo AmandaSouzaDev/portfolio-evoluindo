@@ -4,9 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#f3a2c8">
 
-  <title>Amanda Souza | Portfólio</title>
+  <title>Amanda Souza</title>
+
+  <meta name="theme-color" content="#090609">
+  <meta name="description" content="Amanda Souza | Design e Tecnologia">
 
   <style>
     * {
@@ -15,293 +17,135 @@
       box-sizing: border-box;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
+    html,
     body {
-      background: #f3a2c8;
-      color: #ffffff;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #090609;
       font-family: Arial, Helvetica, sans-serif;
-      overflow-x: hidden;
     }
 
-    /* TELA PRINCIPAL COM VÍDEO */
-    .hero {
+    .tela {
       position: relative;
       width: 100%;
       height: 100vh;
-      height: 100svh;
-      min-height: 550px;
+      height: 100dvh;
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      background: linear-gradient(135deg, #f7b5d4, #d95795);
       isolation: isolate;
+      background: #090609;
     }
 
-    /* VÍDEO DE FUNDO */
-    .video-background {
+    .video-fundo {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      z-index: -2;
+      z-index: -3;
     }
 
-    /* CAMADA PARA MELHORAR A LEITURA */
-    .overlay {
+    .sombra {
       position: absolute;
       inset: 0;
+      z-index: -2;
+      background:
+        linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.15),
+          rgba(12, 0, 9, 0.38) 50%,
+          rgba(0, 0, 0, 0.72)
+        );
+    }
+
+    .brilho {
+      position: absolute;
+      width: 380px;
+      height: 380px;
+      max-width: 90vw;
+      border-radius: 50%;
+      background: rgba(255, 20, 147, 0.20);
+      filter: blur(100px);
       z-index: -1;
+      pointer-events: none;
+    }
+
+    .perfil {
+      width: 100%;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      animation: aparecer 1.3s ease both;
+    }
+
+    .foto-moldura {
+      width: clamp(150px, 24vw, 230px);
+      aspect-ratio: 1;
+      padding: 5px;
+      border-radius: 50%;
       background: linear-gradient(
-        180deg,
-        rgba(20, 5, 15, 0.20),
-        rgba(20, 5, 15, 0.40),
-        rgba(20, 5, 15, 0.65)
+        135deg,
+        #ff8bd4,
+        #ff1493,
+        #790044
       );
+      box-shadow:
+        0 0 22px rgba(255, 20, 147, 0.65),
+        0 0 65px rgba(255, 20, 147, 0.30);
+      animation: flutuar 4s ease-in-out infinite;
     }
 
-    /* CABEÇALHO */
-    header {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      padding: 28px 7%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      z-index: 5;
-    }
-
-    .logo {
-      color: #ffffff;
-      font-size: 20px;
-      font-weight: 900;
-      letter-spacing: 3px;
-      text-decoration: none;
-    }
-
-    .logo span {
-      color: #ffc4df;
-    }
-
-    .nav-link {
-      color: #ffffff;
-      text-decoration: none;
-      font-size: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.7);
-      padding-bottom: 7px;
-      transition: 0.3s;
-    }
-
-    .nav-link:hover {
-      color: #ffc4df;
-      border-color: #ffc4df;
-    }
-
-    /* CONTEÚDO CENTRAL */
-    .content {
-      width: 100%;
-      padding: 30px 20px;
-      animation: entrada 1.5s ease both;
-    }
-
-    .eyebrow {
-      font-size: 12px;
-      letter-spacing: 6px;
-      text-transform: uppercase;
-      margin-bottom: 25px;
-      color: #ffe6f1;
-    }
-
-    h1 {
-      font-size: clamp(42px, 9vw, 105px);
-      line-height: 1.05;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: -2px;
-      color: #ffffff;
-      text-shadow:
-        1px 1px 0 #ed91bb,
-        3px 3px 0 #b84b80,
-        6px 7px 0 rgba(70, 12, 40, 0.55),
-        0 15px 35px rgba(0, 0, 0, 0.35);
-      animation: flutuar 5s ease-in-out infinite;
-    }
-
-    h1 span {
+    .foto {
       display: block;
-      color: #ffc4df;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 50%;
+      border: 3px solid #090609;
+      background: #1b1019;
     }
 
-    .description {
-      max-width: 600px;
-      margin: 28px auto 0;
-      font-size: clamp(13px, 2vw, 17px);
-      line-height: 1.9;
+    .nome {
+      margin-top: 28px;
       color: #ffffff;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-    }
-
-    .description strong {
-      color: #ffc4df;
-    }
-
-    /* BOTÕES */
-    .buttons {
-      margin-top: 35px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-    }
-
-    .button {
-      display: inline-block;
-      padding: 15px 27px;
-      border: 1px solid #ffffff;
-      border-radius: 30px;
-      color: #ffffff;
-      background: rgba(255, 255, 255, 0.10);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      text-decoration: none;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      transition: transform 0.3s, background 0.3s, color 0.3s;
-    }
-
-    .button.primary {
-      color: #641638;
-      background: #ffc4df;
-      border-color: #ffc4df;
-    }
-
-    .button:hover {
-      transform: translateY(-4px);
-      background: #ffffff;
-      color: #a52d65;
-    }
-
-    /* INDICADOR DE ROLAGEM */
-    .scroll-indicator {
-      position: absolute;
-      bottom: 25px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      white-space: nowrap;
-      font-size: 9px;
-      letter-spacing: 3px;
+      font-size: clamp(2.2rem, 7vw, 5.5rem);
+      font-weight: 900;
+      letter-spacing: clamp(1px, 0.7vw, 6px);
+      line-height: 1.1;
       text-transform: uppercase;
-      color: #ffffff;
+      text-shadow:
+        0 0 8px rgba(255, 20, 147, 0.95),
+        0 0 28px rgba(255, 20, 147, 0.65),
+        0 4px 25px rgba(0, 0, 0, 0.9);
     }
 
-    .scroll-indicator span {
-      display: inline-block;
-      width: 30px;
-      height: 1px;
-      background: #ffc4df;
-      animation: linha 2s ease-in-out infinite;
+    .linha-pink {
+      width: 90px;
+      height: 3px;
+      margin-top: 20px;
+      border-radius: 10px;
+      background: #ff1493;
+      box-shadow: 0 0 15px #ff1493;
     }
 
-    /* SOBRE */
-    .about {
-      padding: 100px 8%;
-      text-align: center;
-      background: linear-gradient(135deg, #180b13, #351020);
-    }
-
-    .section-label {
-      color: #f3a2c8;
+    .assinatura {
+      margin-top: 16px;
+      color: #ffd6ed;
+      font-size: clamp(0.75rem, 2vw, 1rem);
+      letter-spacing: 4px;
       text-transform: uppercase;
-      letter-spacing: 5px;
-      font-size: 11px;
-      margin-bottom: 22px;
     }
 
-    .about h2,
-    .contact h2 {
-      font-size: clamp(28px, 5vw, 48px);
-      line-height: 1.2;
-      margin-bottom: 24px;
-    }
-
-    .about h2 span,
-    .contact h2 span {
-      color: #f3a2c8;
-    }
-
-    .about p {
-      max-width: 700px;
-      margin: 0 auto;
-      color: #ead8e1;
-      font-size: 15px;
-      line-height: 2;
-    }
-
-    /* CONTATO */
-    .contact {
-      padding: 90px 8%;
-      text-align: center;
-      background: #f3a2c8;
-      color: #27101c;
-    }
-
-    .contact .section-label {
-      color: #702444;
-    }
-
-    .contact p {
-      margin-bottom: 30px;
-      line-height: 1.8;
-    }
-
-    .contact .button {
-      background: #27101c;
-      color: #ffffff;
-      border-color: #27101c;
-    }
-
-    .contact .button:hover {
-      background: #ffffff;
-      color: #702444;
-      border-color: #ffffff;
-    }
-
-    /* RODAPÉ */
-    footer {
-      padding: 25px 7%;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 15px;
-      background: #12080e;
-      color: #d9c1cd;
-      font-size: 11px;
-      letter-spacing: 1px;
-    }
-
-    footer span {
-      color: #f3a2c8;
-    }
-
-    /* ANIMAÇÕES */
-    @keyframes entrada {
+    @keyframes aparecer {
       from {
         opacity: 0;
-        transform: translateY(30px) scale(0.97);
+        transform: translateY(24px) scale(0.97);
       }
       to {
         opacity: 1;
@@ -314,181 +158,73 @@
         transform: translateY(0);
       }
       50% {
-        transform: translateY(-8px);
+        transform: translateY(-9px);
       }
     }
 
-    @keyframes linha {
-      0%, 100% {
-        width: 20px;
-        opacity: 0.5;
+    @media (max-width: 480px) {
+      .perfil {
+        padding: 18px;
       }
-      50% {
-        width: 38px;
-        opacity: 1;
+
+      .nome {
+        margin-top: 24px;
+      }
+
+      .assinatura {
+        letter-spacing: 2px;
       }
     }
 
-    /* CELULARES */
-    @media (max-width: 600px) {
-      header {
-        padding: 22px 6%;
-      }
-
-      .logo {
-        font-size: 17px;
-      }
-
-      .nav-link {
-        font-size: 10px;
-        letter-spacing: 1px;
-      }
-
-      .eyebrow {
-        font-size: 9px;
-        letter-spacing: 3px;
-      }
-
-      h1 {
-        letter-spacing: -1px;
-      }
-
-      .description {
-        max-width: 420px;
-      }
-
-      .buttons {
-        gap: 12px;
-      }
-
-      .button {
-        padding: 14px 20px;
-        font-size: 10px;
-      }
-
-      .about,
-      .contact {
-        padding: 70px 7%;
-      }
-
-      footer {
-        justify-content: center;
-        text-align: center;
-      }
-    }
-
-    /* ACESSIBILIDADE */
     @media (prefers-reduced-motion: reduce) {
       *,
       *::before,
       *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
       }
     }
   </style>
 </head>
 
 <body>
+  <main class="tela">
 
-  <main>
-    <section class="hero" id="inicio">
-
-      <video
-        class="video-background"
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="auto"
-        poster=""
+    <video
+      class="video-fundo"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      aria-hidden="true"
+    >
+      <source
+        src="V%C3%8DDEO%20FUNDO%20ROSA.mp4"
+        type="video/mp4"
       >
-        <source
-          src="V%C3%8DDEO%20FUNDO%20ROSA.mp4"
-          type="video/mp4"
+    </video>
+
+    <div class="sombra"></div>
+    <div class="brilho"></div>
+
+    <section class="perfil" aria-label="Apresentação de Amanda Souza">
+
+      <div class="foto-moldura">
+        <img
+          class="foto"
+          src="Imagem%20do%20WhatsApp%202026-10-16%20%C3%A0s%2013%3A24%3A10.jpeg"
+          alt="Foto de Amanda Souza"
         >
-        Seu navegador não conseguiu reproduzir o vídeo.
-      </video>
-
-      <div class="overlay"></div>
-
-      <header>
-        <a class="logo" href="#inicio">A<span>.</span>S</a>
-        <a class="nav-link" href="#contato">Contato ↗</a>
-      </header>
-
-      <div class="content">
-        <div class="eyebrow">Bem-vinda ao meu universo</div>
-
-        <h1>
-          Amanda
-          <span>Souza</span>
-        </h1>
-
-        <p class="description">
-          Estudante de <strong>Análise e Desenvolvimento de Sistemas</strong>,
-          apaixonada por criatividade, design e tecnologia.
-        </p>
-
-        <div class="buttons">
-          <a class="button primary" href="#sobre">
-            CONHEÇA-ME ↓
-          </a>
-
-          <a class="button" href="#contato">
-            VAMOS CONVERSAR
-          </a>
-        </div>
       </div>
 
-      <div class="scroll-indicator">
-        <span></span>
-        Role para continuar
-      </div>
+      <h1 class="nome">Amanda Souza</h1>
 
-    </section>
+      <div class="linha-pink"></div>
 
-    <section class="about" id="sobre">
-      <div class="section-label">Sobre mim</div>
+      <p class="assinatura">Design &amp; Tecnologia</p>
 
-      <h2>
-        Criatividade que ganha <span>vida.</span>
-      </h2>
-
-      <p>
-        Sou estudante de Análise e Desenvolvimento de Sistemas.
-        Tenho interesse em tecnologia, criação digital e desenvolvimento web.
-        Busco aprender continuamente e transformar ideias em experiências
-        modernas e criativas.
-      </p>
-    </section>
-
-    <section class="contact" id="contato">
-      <div class="section-label">Contato</div>
-
-      <h2>
-        Vamos conversar<span>?</span>
-      </h2>
-
-      <p>
-        Entre em contato para trocar ideias e conhecer meu trabalho.
-      </p>
-
-      <!-- Troque pelo seu e-mail real -->
-      <a
-        class="button"
-        href="mailto:SEUEMAIL@EXEMPLO.COM"
-      >
-        ENVIAR E-MAIL ↗
-      </a>
     </section>
   </main>
-
-  <footer>
-    <div>© 2026 Amanda Souza</div>
-    <div>Feito com <span>♥</span> e criatividade</div>
-  </footer>
-
 </body>
 </html>
