@@ -34,6 +34,7 @@ body {
   overflow-x: hidden;
 }
 
+/* FOTO COMO FUNDO DA PÁGINA INTEIRA */
 .hero {
   position: relative;
   width: 100%;
@@ -48,18 +49,6 @@ body {
   background: #030609;
 }
 
-/* VÍDEO DE FUNDO */
-.video-bg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -3;
-  opacity: .32;
-}
-
-/* FOTO GRANDE NO FUNDO DA TELA */
 .hero::before {
   content: "";
   position: absolute;
@@ -69,26 +58,30 @@ body {
   background-size: cover;
   background-position: center 30%;
   background-repeat: no-repeat;
-  opacity: .62;
   transform: scale(1.02);
 }
 
-/* ESCURECE O FUNDO PARA O TEXTO FICAR LEGÍVEL */
+/* CAMADA ESCURA PARA DESTACAR O TEXTO */
 .shade {
   position: absolute;
   inset: 0;
   z-index: -1;
   background:
-    linear-gradient(90deg,
-      rgba(2,7,10,.91),
-      rgba(2,7,10,.52) 52%,
-      rgba(2,7,10,.30)),
-    linear-gradient(0deg,
-      rgba(2,7,10,.72),
-      rgba(2,7,10,.12) 55%,
-      rgba(2,7,10,.50));
+    linear-gradient(
+      90deg,
+      rgba(2,7,10,.88),
+      rgba(2,7,10,.50) 55%,
+      rgba(2,7,10,.30)
+    ),
+    linear-gradient(
+      0deg,
+      rgba(2,7,10,.65),
+      rgba(2,7,10,.10) 55%,
+      rgba(2,7,10,.35)
+    );
 }
 
+/* GRADE DIGITAL */
 .grid {
   position: absolute;
   inset: 0;
@@ -108,7 +101,7 @@ body {
   height: 360px;
   border-radius: 50%;
   filter: blur(120px);
-  opacity: .2;
+  opacity: .18;
   z-index: 0;
   pointer-events: none;
 }
@@ -125,19 +118,21 @@ body {
   bottom: 10%;
 }
 
+/* CONTEÚDO PRINCIPAL */
 .layout {
   position: relative;
   z-index: 1;
   width: 100%;
   max-width: 1250px;
   display: grid;
-  grid-template-columns: 1.2fr .8fr;
+  grid-template-columns: 1fr;
   align-items: center;
-  gap: 55px;
+  gap: 30px;
 }
 
 .text-content {
-  text-shadow: 0 2px 12px rgba(0,0,0,.45);
+  max-width: 850px;
+  text-shadow: 0 2px 12px rgba(0,0,0,.5);
 }
 
 .status {
@@ -167,7 +162,7 @@ body {
 
 h1 {
   font-family: 'Orbitron', sans-serif;
-  font-size: clamp(38px, 6.4vw, 88px);
+  font-size: clamp(42px, 7vw, 92px);
   font-weight: 900;
   line-height: 1.04;
   letter-spacing: -3px;
@@ -191,7 +186,7 @@ h1 span {
 }
 
 .description {
-  max-width: 540px;
+  max-width: 600px;
   color: #e0edf3;
   font-size: 15px;
   line-height: 1.9;
@@ -212,7 +207,7 @@ h1 span {
   display: flex;
   flex-wrap: wrap;
   gap: 9px;
-  max-width: 570px;
+  max-width: 650px;
 }
 
 .skill {
@@ -237,6 +232,7 @@ h1 span {
   transform: translateY(-3px);
 }
 
+/* BOTÕES */
 .actions {
   display: flex;
   flex-wrap: wrap;
@@ -281,91 +277,7 @@ h1 span {
   transform: translateY(-3px);
 }
 
-/* FOTO PRINCIPAL COM EFEITO NEON */
-.visual {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 500px;
-}
-
-.orbit {
-  position: absolute;
-  width: min(390px, 100%);
-  aspect-ratio: 1;
-  border: 1px solid rgba(0,170,255,.6);
-  border-radius: 50%;
-  box-shadow: 0 0 45px rgba(0,170,255,.12),
-              inset 0 0 45px rgba(0,255,157,.07);
-  animation: rotate 22s linear infinite;
-}
-
-.orbit::before {
-  content: "";
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  top: 16%;
-  left: 13%;
-  border-radius: 50%;
-  background: var(--green);
-  box-shadow: 0 0 20px var(--green);
-}
-
-.orbit.inner {
-  width: min(320px, 82%);
-  border-color: rgba(0,255,157,.5);
-  animation-direction: reverse;
-  animation-duration: 17s;
-}
-
-.photo-frame {
-  position: relative;
-  z-index: 2;
-  width: min(320px, 78%);
-  aspect-ratio: 4 / 5;
-  padding: 3px;
-  background: linear-gradient(145deg, var(--green), #063e56, var(--blue));
-  clip-path: polygon(0 0, 83% 0, 100% 15%, 100% 100%, 17% 100%, 0 85%);
-  filter: drop-shadow(0 0 28px rgba(0,255,157,.35));
-}
-
-.photo-frame img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  object-position: center;
-  clip-path: polygon(0 0, 83% 0, 100% 15%, 100% 100%, 17% 100%, 0 85%);
-  background: #07151c;
-}
-
-.corner {
-  position: absolute;
-  z-index: 3;
-  color: var(--green);
-  font-family: 'Orbitron', sans-serif;
-  font-size: 10px;
-  letter-spacing: 2px;
-  padding: 12px 14px;
-  border: 1px solid rgba(0,255,157,.45);
-  background: rgba(3,9,14,.90);
-  backdrop-filter: blur(12px);
-}
-
-.corner.top {
-  top: 12%;
-  right: -2%;
-}
-
-.corner.bottom {
-  bottom: 13%;
-  left: -1%;
-  color: var(--blue);
-  border-color: rgba(0,170,255,.5);
-}
-
+/* RODAPÉ */
 .footer {
   position: absolute;
   z-index: 2;
@@ -375,7 +287,7 @@ h1 span {
   display: flex;
   justify-content: space-between;
   gap: 20px;
-  color: #c0d0d8;
+  color: #e0edf3;
   font-size: 9px;
   font-family: 'Orbitron', sans-serif;
   letter-spacing: 2px;
@@ -386,58 +298,27 @@ h1 span {
   color: var(--green);
 }
 
-@keyframes rotate {
-  to { transform: rotate(360deg); }
-}
-
 @keyframes pulse {
   0%, 100% { opacity: 1; }
   50% { opacity: .35; }
 }
 
+/* TABLETS E CELULARES */
 @media (max-width: 900px) {
   .hero {
-    padding: 55px 7% 85px;
-  }
-
-  .layout {
-    grid-template-columns: 1fr;
-    gap: 15px;
-  }
-
-  .visual {
-    grid-row: 1;
-    min-height: 350px;
-  }
-
-  .orbit {
-    width: 290px;
-  }
-
-  .orbit.inner {
-    width: 240px;
-  }
-
-  .photo-frame {
-    width: 205px;
-  }
-
-  .corner.top {
-    right: 8%;
-    top: 8%;
-  }
-
-  .corner.bottom {
-    left: 8%;
-    bottom: 8%;
+    padding: 55px 7% 90px;
   }
 
   .text-content {
     text-align: center;
+    margin: auto;
   }
 
-  .skills, .actions {
+  .skills,
+  .actions {
     justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .description {
@@ -452,23 +333,12 @@ h1 span {
 
 @media (max-width: 480px) {
   .hero {
-    padding: 35px 20px 80px;
+    padding: 45px 20px 85px;
   }
 
-  .visual {
-    min-height: 275px;
-  }
-
-  .orbit {
-    width: 245px;
-  }
-
-  .orbit.inner {
-    width: 200px;
-  }
-
-  .photo-frame {
-    width: 165px;
+  .status {
+    font-size: 9px;
+    letter-spacing: 2px;
   }
 
   .role {
@@ -484,8 +354,10 @@ h1 span {
   }
 
   .footer {
-    font-size: 8px;
-    letter-spacing: 1px;
+    font-size: 7px;
+    letter-spacing: .5px;
+    left: 20px;
+    right: 20px;
   }
 }
 
@@ -501,10 +373,6 @@ h1 span {
 <body>
 <main class="hero">
 
-  <video class="video-bg" autoplay muted loop playsinline>
-    <source src="V%C3%8DDEO%20FUNDO%20ROSA.mp4" type="video/mp4">
-  </video>
-
   <div class="shade"></div>
   <div class="grid"></div>
   <div class="glow green"></div>
@@ -513,6 +381,7 @@ h1 span {
   <div class="layout">
 
     <section class="text-content">
+
       <div class="status">
         <span class="status-dot"></span>
         Criando o futuro digital
@@ -562,20 +431,7 @@ h1 span {
           EXPLORAR GITHUB ↗
         </a>
       </div>
-    </section>
 
-    <section class="visual" aria-label="Foto de Amanda Souza">
-      <div class="orbit"></div>
-      <div class="orbit inner"></div>
-
-      <div class="photo-frame">
-        <img
-          src="WhatsApp%20Image%202026-10-16%20at%2013.24.10.jpeg"
-          alt="Foto de Amanda Souza">
-      </div>
-
-      <div class="corner top">DESIGN × TECH</div>
-      <div class="corner bottom">RIO DE JANEIRO / BR</div>
     </section>
 
   </div>
