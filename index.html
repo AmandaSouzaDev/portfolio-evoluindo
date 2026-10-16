@@ -4,42 +4,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <meta name="theme-color" content="#090609">
+  <meta name="description" content="Amanda Souza — Portfólio pessoal com experiência visual 3D.">
   <title>Amanda Souza | Portfólio 3D</title>
-  <meta name="description" content="Portfólio de Amanda Souza, estudante de Análise e Desenvolvimento de Sistemas, desenvolvimento web e design digital.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg: #090711;
-      --panel: #151020;
-      --pink: #ff43c6;
-      --purple: #a875ff;
-      --cyan: #8cecff;
-      --white: #fff8ff;
-      --muted: #b7adc7;
-      --border: rgba(255,255,255,.12);
+      --pink: #f28ab7;
+      --pink-light: #ffc6df;
+      --pink-dark: #a92f67;
+      --black: #090609;
+      --white: #fff5fa;
     }
 
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 85px;
     }
 
     body {
-      background: var(--bg);
-      color: var(--white);
-      font-family: "DM Sans", sans-serif;
+      min-height: 100vh;
       overflow-x: hidden;
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
     }
 
     body::before {
@@ -49,641 +46,453 @@
       z-index: -2;
       pointer-events: none;
       background:
-        radial-gradient(ellipse at 15% 15%, rgba(168,117,255,.17), transparent 35%),
-        radial-gradient(ellipse at 85% 35%, rgba(255,67,198,.12), transparent 35%),
-        radial-gradient(ellipse at 50% 90%, rgba(65,75,200,.10), transparent 45%);
+        radial-gradient(ellipse at 18% 35%, #70254140, transparent 42%),
+        radial-gradient(ellipse at 85% 65%, #5d1a4030, transparent 38%),
+        linear-gradient(145deg, #10090f, #080608 60%, #160a12);
     }
 
-    #particles {
+    .grain {
       position: fixed;
       inset: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
+      z-index: 10;
       pointer-events: none;
+      opacity: .10;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.25'/%3E%3C/svg%3E");
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
+    .cursor-glow {
+      position: fixed;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: #f28ab710;
+      filter: blur(50px);
+      pointer-events: none;
+      z-index: -1;
+      transform: translate(-50%, -50%);
     }
-
-    button {
-      font: inherit;
-    }
-
-    .container {
-      width: min(1120px, 90%);
-      margin-inline: auto;
-    }
-
-    .gradient {
-      background: linear-gradient(110deg, #ff61d0, #c8a0ff, #8cecff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    /* MENU */
 
     header {
-      position: fixed;
+      position: absolute;
       top: 0;
       left: 0;
       width: 100%;
-      z-index: 100;
-      border-bottom: 1px solid rgba(255,255,255,.08);
-      background: rgba(9,7,17,.78);
-      backdrop-filter: blur(20px);
-    }
-
-    nav {
-      min-height: 76px;
+      z-index: 5;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      gap: 25px;
+      justify-content: space-between;
+      padding: 28px 7%;
     }
 
     .logo {
-      font-family: "Space Grotesk", sans-serif;
-      font-weight: 700;
-      font-size: 1.4rem;
-      letter-spacing: -1px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 3px;
     }
 
     .logo span {
       color: var(--pink);
-      text-shadow: 0 0 18px var(--pink);
     }
 
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      align-items: center;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--muted);
-      font-size: .9rem;
+    .menu-link {
+      color: #f8dce9;
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-bottom: 1px solid #f28ab766;
+      padding-bottom: 7px;
       transition: color .3s;
     }
 
-    .nav-links a:hover {
+    .menu-link:hover {
       color: var(--pink);
     }
 
-    .menu-button {
-      display: none;
-      color: white;
-      background: rgba(255,255,255,.05);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 8px 12px;
-      cursor: pointer;
-    }
-
-    /* BOTÕES */
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 9px;
-      padding: 14px 22px;
-      border-radius: 12px;
-      font-weight: 700;
-      font-size: .92rem;
-      transition: transform .3s, box-shadow .3s;
-    }
-
-    .button:hover {
-      transform: translateY(-4px);
-    }
-
-    .button-primary {
-      color: #18091c;
-      background: linear-gradient(110deg, var(--pink), #d4a5ff);
-      box-shadow: 0 0 22px rgba(255,67,198,.25);
-    }
-
-    .button-primary:hover {
-      box-shadow: 0 0 35px rgba(255,67,198,.55);
-    }
-
-    .button-outline {
-      border: 1px solid rgba(200,160,255,.45);
-      background: rgba(255,255,255,.035);
-    }
-
-    .button-outline:hover {
-      box-shadow: 0 0 22px rgba(168,117,255,.2);
-    }
-
-    /* INÍCIO */
-
     .hero {
       min-height: 100vh;
-      padding: 135px 0 85px;
-      display: flex;
-      align-items: center;
-      perspective: 1200px;
-    }
-
-    .hero-grid {
-      width: 100%;
-      display: grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 55px;
-      align-items: center;
-    }
-
-    .eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 24px;
-      color: #e8b7ff;
-      font-size: .76rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 2.5px;
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 28px;
-      height: 2px;
-      background: var(--pink);
-      box-shadow: 0 0 12px var(--pink);
-    }
-
-    h1, h2, h3 {
-      font-family: "Space Grotesk", sans-serif;
-    }
-
-    .hero h1 {
-      font-size: clamp(3.4rem, 7vw, 6.4rem);
-      letter-spacing: -5px;
-      line-height: .95;
-      margin-bottom: 25px;
-    }
-
-    .hero h1 span {
-      display: block;
-    }
-
-    .hero-description {
-      max-width: 530px;
-      color: var(--muted);
-      font-size: 1.05rem;
-      line-height: 1.9;
-      margin-bottom: 30px;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 13px;
-    }
-
-    .status {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-top: 30px;
-      color: var(--muted);
-      font-size: .86rem;
-    }
-
-    .status-dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: #83ffc0;
-      box-shadow: 0 0 14px #83ffc0;
-    }
-
-    /* FOTO 3D */
-
-    .visual {
-      min-height: 470px;
-      display: grid;
-      place-items: center;
+      min-height: 100svh;
       position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 110px 8% 80px;
+      perspective: 1200px;
       isolation: isolate;
-      perspective: 1000px;
-      animation: enter 1s .15s both;
+    }
+
+    .orb {
+      position: absolute;
+      width: min(62vw, 650px);
+      aspect-ratio: 1;
+      right: 4%;
+      top: 50%;
+      transform: translateY(-45%);
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #f9bad8, #c04e86 18%, #5a1d40 44%, #190d18 65%, transparent 70%);
+      opacity: .16;
+      filter: blur(2px);
+      animation: orbPulse 8s ease-in-out infinite alternate;
+      z-index: -1;
     }
 
     .orbit {
       position: absolute;
-      width: 360px;
-      height: 360px;
-      border: 1px solid rgba(200,160,255,.3);
+      width: min(64vw, 700px);
+      aspect-ratio: 1;
+      right: 2%;
+      top: 50%;
+      border: 1px solid #f28ab72b;
       border-radius: 50%;
-      transform: rotateX(68deg) rotateZ(-20deg);
-      box-shadow: 0 0 25px rgba(168,117,255,.08);
-      animation: orbit 16s linear infinite;
+      transform: translateY(-45%) rotateX(68deg) rotateZ(-20deg);
+      animation: orbitSpin 32s linear infinite;
+      pointer-events: none;
     }
 
     .orbit::before,
     .orbit::after {
       content: "";
       position: absolute;
-      width: 9px;
-      height: 9px;
+      border: 1px solid #f28ab722;
       border-radius: 50%;
-      background: var(--pink);
-      box-shadow: 0 0 18px 4px rgba(255,67,198,.7);
-    }
-
-    .orbit::before {
-      top: 12%;
-      left: 17%;
+      inset: 10%;
     }
 
     .orbit::after {
-      bottom: 12%;
-      right: 17%;
-      background: var(--cyan);
-      box-shadow: 0 0 18px 4px rgba(140,236,255,.6);
+      inset: 22%;
+      border-color: #ffc6df22;
     }
 
-    .photo-glow {
-      position: absolute;
-      width: 270px;
-      height: 330px;
-      background: linear-gradient(135deg, var(--pink), var(--purple));
-      filter: blur(75px);
-      opacity: .35;
-      animation: pulse 4s ease-in-out infinite alternate;
+    .hero-inner {
+      width: 100%;
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      align-items: center;
+      gap: 40px;
     }
 
-    .photo-card {
+    .intro {
       position: relative;
       z-index: 2;
-      width: min(320px, 82%);
-      aspect-ratio: 4 / 5;
-      padding: 4px;
-      border-radius: 27px;
-      background: linear-gradient(145deg, #ff75d8, #a875ff 45%, #4e2a86);
-      transform-style: preserve-3d;
-      transform: rotateY(-9deg) rotateX(4deg);
-      animation: float 6s ease-in-out infinite;
-      box-shadow:
-        0 0 20px rgba(255,67,198,.5),
-        0 0 70px rgba(168,117,255,.2),
-        20px 30px 70px rgba(0,0,0,.5);
-      transition: transform .2s ease-out;
+      animation: enterLeft 1.2s cubic-bezier(.2,.8,.2,1) both;
     }
 
-    .photo-card::before {
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--pink-light);
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 36px;
+      height: 1px;
+      background: var(--pink);
+    }
+
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(44px, 7vw, 100px);
+      font-weight: 900;
+      line-height: .98;
+      letter-spacing: -4px;
+      text-transform: uppercase;
+      perspective: 700px;
+    }
+
+    h1 span {
+      display: block;
+      color: var(--pink);
+      text-shadow:
+        1px 1px 0 #bd5483,
+        2px 2px 0 #8b365d,
+        3px 3px 0 #622642,
+        4px 4px 0 #3a1829,
+        0 18px 35px #000;
+      animation: titleFloat 5s ease-in-out infinite;
+    }
+
+    .subtitle {
+      color: #d7c6cf;
+      margin-top: 27px;
+      max-width: 450px;
+      font-size: 15px;
+      line-height: 1.9;
+    }
+
+    .subtitle strong {
+      color: var(--pink-light);
+      font-weight: 600;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 20px;
+      margin-top: 36px;
+    }
+
+    .primary-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 15px 23px;
+      border-radius: 4px;
+      background: linear-gradient(135deg, #ffc6df, #e779aa);
+      color: #1a0912;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      box-shadow: 0 8px 30px #f28ab71c;
+      transition: transform .3s, box-shadow .3s;
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 35px #f28ab73b;
+    }
+
+    .secondary-btn {
+      color: #f6dce8;
+      font-size: 12px;
+      text-decoration: none;
+      letter-spacing: 1px;
+      border-bottom: 1px solid #f28ab766;
+      padding: 12px 0;
+    }
+
+    .portrait-stage {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 510px;
+      animation: enterRight 1.4s cubic-bezier(.2,.8,.2,1) both;
+    }
+
+    .portrait-ring {
+      position: absolute;
+      width: min(100%, 430px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      border: 1px solid #f28ab74a;
+      transform: rotateX(60deg) rotateZ(-22deg);
+      box-shadow: 0 0 35px #f28ab70b, inset 0 0 35px #f28ab70b;
+      animation: ringFloat 7s ease-in-out infinite;
+    }
+
+    .portrait-ring::before {
+      content: "";
+      position: absolute;
+      inset: 12%;
+      border-radius: 50%;
+      border: 1px solid #ffc6df38;
+    }
+
+    .portrait-frame {
+      width: min(78%, 340px);
+      aspect-ratio: 3 / 4;
+      position: relative;
+      overflow: hidden;
+      border-radius: 180px 180px 12px 12px;
+      background: linear-gradient(150deg, #f4b4d0, #7b2b50 40%, #160b13 85%);
+      border: 1px solid #f5b0d052;
+      box-shadow:
+        0 0 0 8px #f28ab708,
+        0 25px 80px #000,
+        15px 15px 0 #6e25432c;
+      transform: rotateY(-8deg) rotateX(3deg);
+      animation: portraitFloat 6s ease-in-out infinite;
+    }
+
+    .portrait-frame::after {
       content: "";
       position: absolute;
       inset: 0;
-      border-radius: inherit;
-      background: linear-gradient(115deg, transparent 20%, rgba(255,255,255,.32), transparent 48%);
-      transform: translateZ(15px);
+      background: linear-gradient(140deg, #ffffff1a, transparent 35%, #f28ab71c 70%, #00000066);
       pointer-events: none;
     }
 
-    .photo-inner {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      border-radius: 24px;
-      background: linear-gradient(145deg, #29152f, #171020);
-      transform: translateZ(5px);
-    }
-
-    .photo-inner img {
-      display: block;
+    .portrait-frame img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-    }
-
-    .floating-label {
-      position: absolute;
-      z-index: 4;
-      padding: 14px 18px;
-      border: 1px solid rgba(255,255,255,.15);
-      border-radius: 14px;
-      background: rgba(20,13,31,.82);
-      backdrop-filter: blur(15px);
-      box-shadow: 0 0 25px rgba(168,117,255,.13);
-      animation: floatLabel 5s ease-in-out infinite;
-    }
-
-    .floating-label strong {
+      object-position: center;
       display: block;
-      font-size: .9rem;
+      mix-blend-mode: normal;
     }
 
-    .floating-label small {
-      display: block;
-      color: var(--muted);
-      margin-top: 4px;
-    }
-
-    .label-top {
-      top: 35px;
-      right: -5px;
-    }
-
-    .label-bottom {
-      bottom: 35px;
-      left: -5px;
-      animation-delay: -2s;
-    }
-
-    /* SEÇÕES */
-
-    section:not(.hero) {
-      padding: 105px 0;
-    }
-
-    .section-heading {
-      max-width: 700px;
-      margin-bottom: 45px;
-    }
-
-    .section-heading h2 {
-      font-size: clamp(2.3rem, 5vw, 4rem);
-      line-height: 1.08;
-      letter-spacing: -2px;
-      margin-bottom: 18px;
-    }
-
-    .section-heading > p:last-child {
-      color: var(--muted);
-      line-height: 1.9;
-    }
-
-    /* SOBRE */
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: .8fr 1.2fr;
-      gap: 55px;
-      align-items: start;
-    }
-
-    .about-title {
-      font-family: "Space Grotesk", sans-serif;
-      font-size: clamp(2.2rem, 4vw, 3.5rem);
-      font-weight: 700;
-      line-height: 1.08;
-    }
-
-    .about-text p {
-      color: var(--muted);
-      line-height: 1.95;
-      margin-bottom: 20px;
-    }
-
-    .about-note {
-      margin-top: 25px;
-      padding: 22px;
-      border-left: 3px solid var(--pink);
-      border-radius: 0 14px 14px 0;
-      background: rgba(255,67,198,.06);
-      line-height: 1.8;
-      color: #eadcf7;
-    }
-
-    /* HABILIDADES */
-
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-      perspective: 1000px;
-    }
-
-    .tilt-card {
-      position: relative;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      background: linear-gradient(145deg, rgba(255,255,255,.065), rgba(255,255,255,.018));
-      transform-style: preserve-3d;
-      transition:
-        transform .22s ease,
-        border-color .3s,
-        box-shadow .3s;
-    }
-
-    .tilt-card::before {
-      content: "";
+    .photo-fallback {
       position: absolute;
       inset: 0;
-      pointer-events: none;
-      opacity: 0;
-      background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(255,79,200,.18), transparent 55%);
-      transition: opacity .3s;
-    }
-
-    .tilt-card:hover {
-      border-color: rgba(255,79,200,.55);
-      box-shadow: 0 15px 35px rgba(0,0,0,.3), 0 0 24px rgba(168,117,255,.12);
-    }
-
-    .tilt-card:hover::before {
-      opacity: 1;
-    }
-
-    .skill-card {
-      min-height: 165px;
-      padding: 23px 20px;
-    }
-
-    .skill-icon {
-      width: 45px;
-      height: 45px;
-      display: grid;
-      place-items: center;
-      margin-bottom: 18px;
-      border: 1px solid rgba(255,79,200,.25);
-      border-radius: 12px;
-      color: #ff9ee4;
-      background: rgba(255,79,200,.09);
-      font-size: .85rem;
-      font-weight: 700;
-      transform: translateZ(20px);
-    }
-
-    .skill-card h3 {
-      margin-bottom: 8px;
-      font-size: 1rem;
-      transform: translateZ(15px);
-    }
-
-    .skill-card p {
-      color: var(--muted);
-      font-size: .83rem;
-      line-height: 1.7;
-      transform: translateZ(10px);
-    }
-
-    /* PROJETOS */
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 22px;
-      perspective: 1200px;
-    }
-
-    .project-card {
-      min-height: 300px;
-      padding: 30px;
       display: flex;
+      align-items: center;
+      justify-content: center;
       flex-direction: column;
-      justify-content: space-between;
-      transform-style: preserve-3d;
+      gap: 15px;
+      color: #ffe5f0;
+      text-align: center;
+      padding: 20px;
     }
 
-    .project-top {
-      position: relative;
-      z-index: 1;
-      transform: translateZ(25px);
+    .photo-fallback .initials {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 75px;
+      font-weight: 900;
+      color: #ffc6df;
+      text-shadow: 5px 5px 0 #722a4d;
     }
 
-    .project-number {
-      color: var(--pink);
-      font-size: .77rem;
+    .photo-fallback small {
+      font-size: 10px;
       letter-spacing: 2px;
-      font-weight: 700;
-      margin-bottom: 25px;
+      line-height: 1.8;
     }
 
-    .project-card h3 {
-      font-size: 1.5rem;
-      margin-bottom: 14px;
+    .photo-label {
+      position: absolute;
+      bottom: 6%;
+      left: -5%;
+      padding: 13px 18px;
+      background: #100a10d9;
+      border: 1px solid #f28ab744;
+      backdrop-filter: blur(12px);
+      color: #ffe4ef;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      z-index: 2;
     }
 
-    .project-card p {
-      color: var(--muted);
-      font-size: .93rem;
-      line-height: 1.85;
-      margin-bottom: 20px;
+    .photo-label span {
+      color: var(--pink);
     }
 
-    .tags {
+    .side-note {
+      position: absolute;
+      right: 0;
+      top: 18%;
+      writing-mode: vertical-rl;
+      color: #f28ab77a;
+      font-size: 9px;
+      letter-spacing: 4px;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
       display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+      align-items: center;
+      gap: 12px;
+      color: #a895a0;
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .scroll-indicator::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--pink);
+      animation: linePulse 2s ease-in-out infinite;
+    }
+
+    .about {
+      position: relative;
+      padding: 100px 8%;
+      border-top: 1px solid #f28ab71b;
+      background: linear-gradient(180deg, #10090f, #0a070a);
+      text-align: center;
+    }
+
+    .about-inner {
+      max-width: 760px;
+      margin: auto;
+    }
+
+    .section-tag {
+      color: var(--pink);
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-size: 10px;
       margin-bottom: 22px;
     }
 
-    .tags span {
-      padding: 6px 10px;
-      border: 1px solid rgba(200,160,255,.2);
-      border-radius: 30px;
-      color: #dfc8f6;
-      font-size: .75rem;
+    .about h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(26px, 4vw, 48px);
+      margin-bottom: 25px;
+      line-height: 1.2;
     }
 
-    .project-link {
-      align-self: flex-start;
-      position: relative;
-      z-index: 2;
-      color: #ffa6e4;
-      font-weight: 700;
-      font-size: .9rem;
-      transform: translateZ(30px);
-      transition: color .3s;
-    }
-
-    .project-link:hover {
-      color: white;
-    }
-
-    /* CONTATO */
-
-    .contact-panel {
-      position: relative;
-      overflow: hidden;
-      padding: 70px 30px;
-      border: 1px solid rgba(255,79,200,.28);
-      border-radius: 28px;
-      text-align: center;
-      background:
-        radial-gradient(ellipse at 50% 0%, rgba(168,117,255,.22), transparent 65%),
-        rgba(21,16,32,.85);
-      box-shadow: inset 0 0 50px rgba(168,117,255,.035);
-    }
-
-    .contact-panel::before {
-      content: "";
-      position: absolute;
-      width: 250px;
-      height: 250px;
-      top: -160px;
-      left: calc(50% - 125px);
-      border-radius: 50%;
-      background: var(--pink);
-      filter: blur(110px);
-      opacity: .28;
-    }
-
-    .contact-panel h2 {
-      position: relative;
-      font-size: clamp(2.2rem, 5vw, 4rem);
-      line-height: 1.1;
-      letter-spacing: -2px;
-      margin-bottom: 20px;
-    }
-
-    .contact-panel p {
-      position: relative;
-      max-width: 580px;
-      margin: 0 auto 30px;
-      color: var(--muted);
-      line-height: 1.9;
-    }
-
-    .contact-buttons {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 14px;
-    }
-
-    /* RODAPÉ */
-
-    footer {
-      padding: 28px 0;
-      border-top: 1px solid var(--border);
-    }
-
-    .footer-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
-    footer p {
-      color: var(--muted);
-      font-size: .84rem;
-    }
-
-    .footer-content span {
+    .about h2 span {
       color: var(--pink);
     }
 
-    /* REVELAÇÃO */
+    .about p {
+      color: #c8b7c0;
+      line-height: 2;
+      font-size: 14px;
+    }
+
+    .contact {
+      padding: 90px 8%;
+      text-align: center;
+      background:
+        radial-gradient(ellipse at center, #65213d26, transparent 60%),
+        #090609;
+    }
+
+    .contact h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(28px, 5vw, 54px);
+      margin-bottom: 20px;
+    }
+
+    .contact h2 span {
+      color: var(--pink);
+    }
+
+    .contact p {
+      color: #c8b7c0;
+      margin-bottom: 28px;
+      font-size: 14px;
+    }
+
+    footer {
+      padding: 24px 8%;
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+      border-top: 1px solid #f28ab71c;
+      color: #8d7b85;
+      font-size: 10px;
+      letter-spacing: 1px;
+    }
+
+    footer span {
+      color: var(--pink);
+    }
 
     .reveal {
       opacity: 0;
       transform: translateY(35px);
-      transition: opacity .8s ease, transform .8s ease;
+      transition: opacity .9s ease, transform .9s ease;
     }
 
     .reveal.visible {
@@ -691,748 +500,300 @@
       transform: translateY(0);
     }
 
-    @keyframes enter {
-      from {
-        opacity: 0;
-        transform: translateY(25px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .particle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--pink-light);
+      box-shadow: 0 0 12px #f28ab7;
+      opacity: .6;
+      pointer-events: none;
+      animation: particleRise linear infinite;
     }
 
-    @keyframes float {
-      0%, 100% {
-        transform: translateY(0) rotateY(-9deg) rotateX(4deg);
-      }
-      50% {
-        transform: translateY(-13px) rotateY(-4deg) rotateX(1deg);
-      }
+    @keyframes enterLeft {
+      from { opacity: 0; transform: translateX(-45px) rotateY(8deg); }
+      to { opacity: 1; transform: translateX(0) rotateY(0); }
     }
 
-    @keyframes floatLabel {
-      0%, 100% { transform: translateY(0) translateZ(40px); }
-      50% { transform: translateY(-9px) translateZ(40px); }
+    @keyframes enterRight {
+      from { opacity: 0; transform: translateX(45px) rotateY(-8deg); }
+      to { opacity: 1; transform: translateX(0) rotateY(0); }
     }
 
-    @keyframes orbit {
-      from { transform: rotateX(68deg) rotateZ(0deg); }
-      to { transform: rotateX(68deg) rotateZ(360deg); }
+    @keyframes titleFloat {
+      0%, 100% { transform: translateY(0) rotateX(0); }
+      50% { transform: translateY(-7px) rotateX(2deg); }
     }
 
-    @keyframes pulse {
-      from { opacity: .22; transform: scale(.88); }
-      to { opacity: .48; transform: scale(1.12); }
+    @keyframes portraitFloat {
+      0%, 100% { transform: translateY(0) rotateY(-8deg) rotateX(3deg); }
+      50% { transform: translateY(-12px) rotateY(-4deg) rotateX(1deg); }
     }
 
-    /* CELULARES E TABLETS */
-
-    @media (max-width: 900px) {
-      .hero-grid {
-        gap: 25px;
-      }
-
-      .hero h1 {
-        font-size: clamp(3.2rem, 7vw, 5rem);
-      }
-
-      .skills-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .orbit {
-        width: 290px;
-        height: 290px;
-      }
-
-      .label-top {
-        right: -5px;
-      }
+    @keyframes ringFloat {
+      0%, 100% { transform: rotateX(60deg) rotateZ(-22deg) translateY(0); }
+      50% { transform: rotateX(60deg) rotateZ(-12deg) translateY(-10px); }
     }
 
-    @media (max-width: 680px) {
-      nav {
-        min-height: 68px;
-      }
+    @keyframes orbitSpin {
+      from { transform: translateY(-45%) rotateX(68deg) rotateZ(-20deg); }
+      to { transform: translateY(-45%) rotateX(68deg) rotateZ(340deg); }
+    }
 
-      .menu-button {
-        display: block;
-      }
+    @keyframes orbPulse {
+      from { opacity: .10; transform: translateY(-45%) scale(.94); }
+      to { opacity: .22; transform: translateY(-45%) scale(1.05); }
+    }
 
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: 68px;
-        left: 0;
-        width: 100%;
-        padding: 24px 5%;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 22px;
-        background: rgba(9,7,17,.98);
-        border-bottom: 1px solid var(--border);
-      }
+    @keyframes linePulse {
+      0%, 100% { opacity: .35; width: 18px; }
+      50% { opacity: 1; width: 38px; }
+    }
 
-      .nav-links.open {
-        display: flex;
+    @keyframes particleRise {
+      from { transform: translateY(30px); opacity: 0; }
+      20% { opacity: .65; }
+      80% { opacity: .45; }
+      to { transform: translateY(-120px); opacity: 0; }
+    }
+
+    @media (max-width: 760px) {
+      header {
+        padding: 22px 6%;
       }
 
       .hero {
-        padding-top: 115px;
+        padding: 120px 7% 75px;
       }
 
-      .hero-grid {
+      .hero-inner {
         grid-template-columns: 1fr;
-        gap: 35px;
+        gap: 10px;
       }
 
-      .hero h1 {
-        font-size: clamp(3.5rem, 15vw, 5rem);
-        letter-spacing: -3px;
-      }
-
-      .hero-description {
-        font-size: .98rem;
-      }
-
-      .visual {
-        min-height: 420px;
-      }
-
-      .photo-card {
-        width: min(285px, 78%);
-      }
-
-      .orbit {
-        width: 275px;
-        height: 275px;
-      }
-
-      .label-top {
-        top: 20px;
-        right: 0;
-      }
-
-      .label-bottom {
-        bottom: 18px;
-        left: 0;
-      }
-
-      section:not(.hero) {
-        padding: 78px 0;
-      }
-
-      .about-grid {
-        grid-template-columns: 1fr;
-        gap: 25px;
-      }
-
-      .projects-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .project-card {
-        min-height: 285px;
-        padding: 24px;
-      }
-
-      .contact-panel {
-        padding: 48px 22px;
-      }
-
-      .footer-content {
-        flex-direction: column;
+      .intro {
         text-align: center;
+      }
+
+      .eyebrow {
+        justify-content: center;
+        font-size: 9px;
+        letter-spacing: 3px;
+      }
+
+      h1 {
+        font-size: clamp(43px, 12vw, 75px);
+        letter-spacing: -2px;
+      }
+
+      .subtitle {
+        margin: 22px auto 0;
+        font-size: 13px;
+      }
+
+      .buttons {
+        justify-content: center;
+        margin-top: 27px;
+      }
+
+      .portrait-stage {
+        min-height: 390px;
+        margin-top: 5px;
+      }
+
+      .portrait-frame {
+        width: min(68%, 270px);
+      }
+
+      .portrait-ring {
+        width: min(90%, 350px);
+      }
+
+      .orb, .orbit {
+        width: 90vw;
+        right: 5%;
+        top: 66%;
+      }
+
+      .side-note {
+        right: 1%;
+        top: 20%;
+      }
+
+      .scroll-indicator {
+        bottom: 20px;
+      }
+
+      .about, .contact {
+        padding: 75px 7%;
       }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
+      *, *::before, *::after {
         animation-duration: .01ms !important;
         animation-iteration-count: 1 !important;
         scroll-behavior: auto !important;
         transition-duration: .01ms !important;
-      }
-
-      .reveal {
-        opacity: 1;
-        transform: none;
       }
     }
   </style>
 </head>
 
 <body>
-  <canvas id="particles" aria-hidden="true"></canvas>
+  <div class="grain"></div>
+  <div class="cursor-glow" id="cursorGlow"></div>
 
   <header>
-    <nav class="container" aria-label="Menu principal">
-      <a class="logo" href="#inicio">Amanda<span>.</span></a>
-
-      <button
-        class="menu-button"
-        id="menuButton"
-        aria-label="Abrir menu"
-        aria-expanded="false"
-        aria-controls="navLinks"
-      >☰</button>
-
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#inicio">Início</a></li>
-        <li><a href="#sobre">Sobre mim</a></li>
-        <li><a href="#habilidades">Habilidades</a></li>
-        <li><a href="#projetos">Projetos</a></li>
-        <li><a href="#contato">Contato</a></li>
-      </ul>
-    </nav>
+    <a href="#inicio" class="logo" style="text-decoration:none;color:#fff5fa">
+      A<span>.</span>S
+    </a>
+    <a href="#contato" class="menu-link">Contato ↗</a>
   </header>
 
   <main>
-    <!-- INÍCIO -->
-
     <section class="hero" id="inicio">
-      <div class="container hero-grid">
+      <div class="orb"></div>
+      <div class="orbit"></div>
 
-        <div class="hero-content">
-          <p class="eyebrow">Bem-vindo ao meu universo digital</p>
+      <div class="hero-inner">
+        <div class="intro">
+          <div class="eyebrow">Criatividade em movimento</div>
 
           <h1>
-            <span>Amanda</span>
-            <span class="gradient">Souza.</span>
+            Amanda
+            <span>Souza</span>
           </h1>
 
-          <p class="hero-description">
+          <p class="subtitle">
+            Olá, eu sou <strong>Amanda Souza</strong>.
             Estudante de Análise e Desenvolvimento de Sistemas,
-            apaixonada por tecnologia, desenvolvimento web e
-            criação de experiências digitais.
+            apaixonada por design, criatividade e tecnologia.
           </p>
 
-          <div class="hero-actions">
-            <a class="button button-primary" href="#projetos">
-              Explorar projetos ↗
+          <div class="buttons">
+            <a class="primary-btn" href="#sobre">
+              CONHEÇA-ME <span>↘</span>
             </a>
-            <a class="button button-outline" href="#sobre">
-              Minha trajetória
+            <a class="secondary-btn" href="#contato">
+              Vamos conversar
             </a>
-          </div>
-
-          <div class="status">
-            <span class="status-dot"></span>
-            Aprendendo, criando e evoluindo
           </div>
         </div>
 
-        <div class="visual">
-          <div class="orbit"></div>
-          <div class="photo-glow"></div>
+        <div class="portrait-stage" id="portraitStage">
+          <div class="portrait-ring"></div>
 
-          <div class="photo-card" id="photoCard">
-            <div class="photo-inner">
-              <img
-                src="WhatsApp%20Image%202026-10-16%20at%2013.24.10.jpeg"
-                alt="Foto de Amanda Souza"
-              >
+          <div class="portrait-frame">
+            <div class="photo-fallback" id="photoFallback">
+              <div class="initials">AS</div>
+              <small>AMANDA SOUZA<br>FOTO DO PERFIL</small>
             </div>
+
+            <img
+              id="profilePhoto"
+              src="WhatsApp%20Image%202026-10-16%20at%2013.24.10.jpeg"
+              alt="Foto de Amanda Souza"
+              onload="document.getElementById('photoFallback').style.display='none'"
+              onerror="this.style.display='none'"
+            >
           </div>
 
-          <div class="floating-label label-top">
-            <strong>✦ Criatividade</strong>
-            <small>Ideias em movimento</small>
-          </div>
-
-          <div class="floating-label label-bottom">
-            <strong>⌘ Tecnologia</strong>
-            <small>Construindo meu futuro</small>
-          </div>
+          <div class="photo-label">Amanda <span>Souza</span> · 2026</div>
+          <div class="side-note">DESIGN · TECNOLOGIA · CRIATIVIDADE</div>
         </div>
+      </div>
 
+      <div class="scroll-indicator">Role para explorar</div>
+    </section>
+
+    <section class="about reveal" id="sobre">
+      <div class="about-inner">
+        <div class="section-tag">Um pouco sobre mim</div>
+        <h2>Ideias que ganham <span>vida.</span></h2>
+        <p>
+          Sou estudante de Análise e Desenvolvimento de Sistemas,
+          com interesse em tecnologia, criação digital e desenvolvimento web.
+          Gosto de transformar ideias em experiências visuais modernas,
+          unindo criatividade, dedicação e aprendizado constante.
+        </p>
       </div>
     </section>
 
-    <!-- SOBRE MIM -->
+    <section class="contact reveal" id="contato">
+      <div class="section-tag">Entre em contato</div>
+      <h2>Vamos criar algo <span>incrível?</span></h2>
+      <p>Será um prazer conversar com você.</p>
 
-    <section id="sobre">
-      <div class="container reveal">
-
-        <div class="section-heading">
-          <p class="eyebrow">Um pouco sobre mim</p>
-          <h2>Minha jornada no universo <span class="gradient">digital.</span></h2>
-        </div>
-
-        <div class="about-grid">
-          <div class="about-title">
-            Criatividade
-            <div class="gradient">com propósito.</div>
-          </div>
-
-          <div class="about-text">
-            <p>
-              Sou estudante de Análise e Desenvolvimento de Sistemas
-              e estou construindo minha trajetória na área de tecnologia.
-            </p>
-
-            <p>
-              Tenho interesse em desenvolvimento web, interfaces,
-              experiência do usuário e design gráfico. Gosto de explorar
-              novas ferramentas e transformar ideias em projetos práticos.
-            </p>
-
-            <p>
-              Meu objetivo é ampliar meus conhecimentos, desenvolver
-              soluções digitais e conquistar oportunidades para crescer
-              profissionalmente na área de tecnologia.
-            </p>
-
-            <div class="about-note">
-              Acredito que tecnologia e criatividade podem se unir
-              para criar experiências digitais marcantes, funcionais
-              e acessíveis.
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- HABILIDADES -->
-
-    <section id="habilidades">
-      <div class="container">
-
-        <div class="section-heading reveal">
-          <p class="eyebrow">Meu universo de conhecimentos</p>
-          <h2>Habilidades em <span class="gradient">evolução.</span></h2>
-          <p>
-            Conhecimentos que venho estudando e praticando nos meus
-            projetos pessoais e acadêmicos.
-          </p>
-        </div>
-
-        <div class="skills-grid">
-
-          <article class="tilt-card skill-card reveal">
-            <div class="skill-icon">HTML</div>
-            <h3>HTML5</h3>
-            <p>Estruturação de páginas e conteúdo para a web.</p>
-          </article>
-
-          <article class="tilt-card skill-card reveal">
-            <div class="skill-icon">CSS</div>
-            <h3>CSS3</h3>
-            <p>Estilização, layouts responsivos e animações.</p>
-          </article>
-
-          <article class="tilt-card skill-card reveal">
-            <div class="skill-icon">JS</div>
-            <h3>JavaScript</h3>
-            <p>Fundamentos de programação e interatividade.</p>
-          </article>
-
-          <article class="tilt-card skill-card reveal">
-            <div class="skill-icon">Py</div>
-            <h3>Python</h3>
-            <p>Lógica de programação e projetos de estudo.</p>
-          </article>
-
-          <article class="tilt-card skill-card reveal">
-            <div class="skill-icon">UI</div>
-            <h3>UI/UX Design</h3>
-            <p>Interfaces digitais e experiência do usuário.</p>
-          </article>
-
-          <article class="tilt-card skill-card reveal">
-            <div class="skill-icon">DG</div>
-            <h3>Design gráfico</h3>
-            <p>Comunicação visual e identidade digital.</p>
-          </article>
-
-          <article class="tilt-card skill-card reveal">
-            <div class="skill-icon">GH</div>
-            <h3>GitHub</h3>
-            <p>Repositórios, versionamento e publicação de projetos.</p>
-          </article>
-
-          <article class="tilt-card skill-card reveal">
-            <div class="skill-icon">ADS</div>
-            <h3>Análise de sistemas</h3>
-            <p>Estudos de requisitos, lógica e desenvolvimento de software.</p>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- PROJETOS: SEM FIGMA -->
-
-    <section id="projetos">
-      <div class="container">
-
-        <div class="section-heading reveal">
-          <p class="eyebrow">Projetos selecionados</p>
-          <h2>Conhecimento transformado em <span class="gradient">prática.</span></h2>
-          <p>
-            Conheça meus estudos e acompanhe minha evolução
-            por meio de projetos de desenvolvimento.
-          </p>
-        </div>
-
-        <div class="projects-grid">
-
-          <article class="tilt-card project-card reveal">
-            <div class="project-top">
-              <p class="project-number">PROJETO 01 / PYTHON</p>
-              <h3>Sistema de Gestão de Notas</h3>
-
-              <div class="tags">
-                <span>Python</span>
-                <span>Lógica</span>
-                <span>Projeto acadêmico</span>
-              </div>
-
-              <p>
-                Projeto de estudo para praticar programação e organizar
-                informações relacionadas às notas de estudantes.
-              </p>
-            </div>
-
-            <a
-              class="project-link"
-              href="https://github.com/AmandaSouza-Front/sistema-gestao-notas-python"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Ver projeto no GitHub ↗
-            </a>
-          </article>
-
-          <article class="tilt-card project-card reveal">
-            <div class="project-top">
-              <p class="project-number">PROJETO 02 / WEB</p>
-              <h3>Portfólio de Design</h3>
-
-              <div class="tags">
-                <span>HTML</span>
-                <span>CSS</span>
-                <span>Web design</span>
-              </div>
-
-              <p>
-                Página pessoal para apresentar trabalhos, conhecimentos
-                de desenvolvimento web e identidade visual.
-              </p>
-            </div>
-
-            <a
-              class="project-link"
-              href="https://amandasouza-front.github.io/Portfolio/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Conhecer o portfólio ↗
-            </a>
-          </article>
-
-          <article class="tilt-card project-card reveal">
-            <div class="project-top">
-              <p class="project-number">PROJETO 03 / DESENVOLVIMENTO</p>
-              <h3>Meu GitHub</h3>
-
-              <div class="tags">
-                <span>Repositórios</span>
-                <span>Estudos</span>
-                <span>Programação</span>
-              </div>
-
-              <p>
-                Um espaço para acompanhar meus projetos, explorar
-                meus códigos e conhecer minha evolução na tecnologia.
-              </p>
-            </div>
-
-            <a
-              class="project-link"
-              href="https://github.com/AmandaSouzaDev"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Explorar repositórios ↗
-            </a>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTATO -->
-
-    <section id="contato">
-      <div class="container reveal">
-
-        <div class="contact-panel">
-          <p class="eyebrow" style="justify-content:center">
-            Vamos nos conectar?
-          </p>
-
-          <h2>
-            O futuro começa com uma <span class="gradient">ideia.</span>
-          </h2>
-
-          <p>
-            Estou construindo minha trajetória em tecnologia e design.
-            Conheça meus projetos e acompanhe minha evolução profissional.
-          </p>
-
-          <div class="contact-buttons">
-            <a
-              class="button button-primary"
-              href="https://github.com/AmandaSouzaDev"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Meu GitHub ↗
-            </a>
-
-            <a
-              class="button button-outline"
-              href="https://www.linkedin.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Meu LinkedIn ↗
-            </a>
-          </div>
-        </div>
-
-      </div>
+      <!-- Substitua o link abaixo pelo seu endereço de e-mail -->
+      <a class="primary-btn" href="mailto:SEUEMAIL@EXEMPLO.COM">
+        FALE COMIGO ↗
+      </a>
     </section>
   </main>
 
   <footer>
-    <div class="container footer-content">
-      <p>© <span id="year"></span> Amanda Souza</p>
-      <p>Desenvolvido com <span>♥</span> criatividade e tecnologia.</p>
-    </div>
+    <div>© 2026 Amanda Souza</div>
+    <div>Feito com <span>♥</span> e criatividade</div>
   </footer>
 
   <script>
-    // Ano automático no rodapé.
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
+    // Efeito de luz suave que acompanha o mouse
+    const glow = document.getElementById('cursorGlow');
 
-    // Menu responsivo.
-    const menuButton = document.getElementById("menuButton");
-    const navLinks = document.getElementById("navLinks");
-
-    menuButton.addEventListener("click", () => {
-      const opened = navLinks.classList.toggle("open");
-
-      menuButton.textContent = opened ? "✕" : "☰";
-      menuButton.setAttribute("aria-expanded", String(opened));
-      menuButton.setAttribute(
-        "aria-label",
-        opened ? "Fechar menu" : "Abrir menu"
-      );
+    window.addEventListener('mousemove', (event) => {
+      glow.style.left = event.clientX + 'px';
+      glow.style.top = event.clientY + 'px';
     });
 
-    navLinks.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", () => {
-        navLinks.classList.remove("open");
-        menuButton.textContent = "☰";
-        menuButton.setAttribute("aria-expanded", "false");
-        menuButton.setAttribute("aria-label", "Abrir menu");
-      });
-    });
+    // Movimento 3D sutil no retrato
+    const stage = document.getElementById('portraitStage');
 
-    // Revelação gradual das seções.
-    const revealItems = document.querySelectorAll(".reveal");
+    if (window.matchMedia('(pointer: fine)').matches) {
+      stage.addEventListener('mousemove', (event) => {
+        const rect = stage.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width - 0.5;
+        const y = (event.clientY - rect.top) / rect.height - 0.5;
+        const frame = stage.querySelector('.portrait-frame');
 
-    if ("IntersectionObserver" in window) {
-      const revealObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.12 });
-
-      revealItems.forEach(item => revealObserver.observe(item));
-    } else {
-      revealItems.forEach(item => item.classList.add("visible"));
-    }
-
-    // Efeito 3D nos cartões e na foto.
-    const canHover = window.matchMedia(
-      "(hover: hover) and (pointer: fine)"
-    ).matches;
-
-    const reduceMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-    if (canHover && !reduceMotion) {
-      document.querySelectorAll(".tilt-card").forEach(card => {
-        card.addEventListener("pointermove", event => {
-          const rect = card.getBoundingClientRect();
-          const x = event.clientX - rect.left;
-          const y = event.clientY - rect.top;
-
-          const centerX = rect.width / 2;
-          const centerY = rect.height / 2;
-
-          const rotateX = ((y - centerY) / centerY) * -5;
-          const rotateY = ((x - centerX) / centerX) * 5;
-
-          card.style.transform =
-            `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
-
-          card.style.setProperty("--mx", `${x}px`);
-          card.style.setProperty("--my", `${y}px`);
-        });
-
-        card.addEventListener("pointerleave", () => {
-          card.style.transform = "";
-        });
+        frame.style.transform =
+          `rotateY(${-8 + x * 12}deg) rotateX(${3 - y * 10}deg)`;
       });
 
-      const photoCard = document.getElementById("photoCard");
-
-      photoCard.addEventListener("pointermove", event => {
-        const rect = photoCard.getBoundingClientRect();
-        const x = (event.clientX - rect.left) / rect.width;
-        const y = (event.clientY - rect.top) / rect.height;
-
-        const rotateY = (x - 0.5) * 18;
-        const rotateX = (0.5 - y) * 15;
-
-        photoCard.style.animation = "none";
-        photoCard.style.transform =
-          `rotateY(${-9 + rotateY}deg) rotateX(${4 + rotateX}deg) translateY(-4px)`;
-      });
-
-      photoCard.addEventListener("pointerleave", () => {
-        photoCard.style.animation = "";
-        photoCard.style.transform = "";
+      stage.addEventListener('mouseleave', () => {
+        stage.querySelector('.portrait-frame').style.transform =
+          'rotateY(-8deg) rotateX(3deg)';
       });
     }
 
-    // Partículas luminosas no fundo.
-    const canvas = document.getElementById("particles");
-    const ctx = canvas.getContext("2d");
+    // Partículas flutuantes no fundo
+    const hero = document.querySelector('.hero');
 
-    let particles = [];
-    let width = 0;
-    let height = 0;
-    let animationFrame;
-    let lastFrame = 0;
-
-    function resizeCanvas() {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-
-      width = window.innerWidth;
-      height = window.innerHeight;
-
-      canvas.width = width * dpr;
-      canvas.height = height * dpr;
-      canvas.style.width = width + "px";
-      canvas.style.height = height + "px";
-
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-      const count = Math.min(
-        75,
-        Math.max(25, Math.floor(width / 18))
-      );
-
-      particles = Array.from({ length: count }, () => ({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        radius: Math.random() * 1.8 + 0.5,
-        speed: Math.random() * 0.35 + 0.08,
-        drift: (Math.random() - 0.5) * 0.3,
-        alpha: Math.random() * 0.55 + 0.15,
-        phase: Math.random() * Math.PI * 2,
-        color: Math.random() > 0.5 ? "255,67,198" : "168,117,255"
-      }));
+    for (let i = 0; i < 28; i++) {
+      const particle = document.createElement('span');
+      particle.className = 'particle';
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.top = (20 + Math.random() * 80) + '%';
+      particle.style.animationDuration = (5 + Math.random() * 9) + 's';
+      particle.style.animationDelay = (Math.random() * 7) + 's';
+      particle.style.opacity = (0.2 + Math.random() * 0.5).toString();
+      hero.appendChild(particle);
     }
 
-    function drawParticles(time = 0) {
-      if (document.hidden) {
-        animationFrame = null;
-        return;
-      }
-
-      animationFrame = requestAnimationFrame(drawParticles);
-
-      if (time - lastFrame < 33) return;
-      lastFrame = time;
-
-      ctx.clearRect(0, 0, width, height);
-
-      particles.forEach(particle => {
-        particle.y -= particle.speed;
-        particle.x += particle.drift;
-
-        if (particle.y < -5) {
-          particle.y = height + 5;
-          particle.x = Math.random() * width;
+    // Animação de entrada das seções durante a rolagem
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
         }
-
-        if (particle.x < -5) particle.x = width + 5;
-        if (particle.x > width + 5) particle.x = -5;
-
-        const glow =
-          particle.alpha *
-          (0.65 + Math.sin(time * 0.001 + particle.phase) * 0.35);
-
-        ctx.beginPath();
-        ctx.arc(
-          particle.x,
-          particle.y,
-          particle.radius,
-          0,
-          Math.PI * 2
-        );
-
-        ctx.fillStyle = `rgba(${particle.color},${glow})`;
-        ctx.shadowBlur = 12;
-        ctx.shadowColor = `rgba(${particle.color},0.65)`;
-        ctx.fill();
       });
+    }, { threshold: 0.15 });
 
-      ctx.shadowBlur = 0;
-    }
-
-    function startParticles() {
-      if (!reduceMotion && !document.hidden && !animationFrame) {
-        animationFrame = requestAnimationFrame(drawParticles);
-      }
-    }
-
-    function stopParticles() {
-      if (animationFrame) {
-        cancelAnimationFrame(animationFrame);
-        animationFrame = null;
-      }
-    }
-
-    resizeCanvas();
-
-    if (!reduceMotion) {
-      startParticles();
-    }
-
-    window.addEventListener("resize", resizeCanvas);
-
-    document.addEventListener("visibilitychange", () => {
-      if (document.hidden) {
-        stopParticles();
-      } else {
-        startParticles();
-      }
+    document.querySelectorAll('.reveal').forEach((element) => {
+      observer.observe(element);
     });
   </script>
 </body>
